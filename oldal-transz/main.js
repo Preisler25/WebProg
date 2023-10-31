@@ -15,6 +15,6 @@ button.addEventListener('click', () => {
     }
 
     for (let i = 0; i < section.length; i++) {
-        section[i].classList.add(`mb-${(i+1) * 5}`);
+        section[i].classList.add(`mb-[${(i+1) * 5}px]`);
     }
 });
