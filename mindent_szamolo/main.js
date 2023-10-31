@@ -49,10 +49,43 @@ let Masodfoku = (a, b, c) => {
     
 }
 
+let Masodik = () => {
+    let a = parseInt(inputa.value);
+    let b = parseInt(inputb.value);
+    let c = parseInt(inputc.value);
+    Masodfoku(a, b, c);
+}
+
+
+
+//haromadik feladat:
+
+let input_num = document.querySelector('#input_num');
+let display3 = document.querySelector('#disp3');
+
+let AllTrigon = (num) => {
+    let list = [Math.sin(num), Math.cos(num), Math.tan(num)]
+
+    for (let i = 0; i < list.length; i++) {
+        if (isNaN(list[i])){
+            list[i] = `<span class="text-red-500">Nem létezik</span>`;
+        }
+        else{
+            list[i] = `<span>${list[i]}</span>`;
+        }   
+    }
+    display3.innerHTML = `Sin: ${list[0]} <br> Cos: ${list[1]} <br> Tan: ${list[2]}`;
+}
+
+
+let Haromadik = () => {
+    let num = parseInt(input_num.value);
+    AllTrigon(num);
+}
+
+
 
 addEventListener('keyup', (event) => {
-        let a = parseInt(inputa.value);
-        let b = parseInt(inputb.value);
-        let c = parseInt(inputc.value);
-        Masodfoku(a, b, c);
+        Masodik();
+        Haromadik();
 });
