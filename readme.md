@@ -2,4 +2,4 @@
 
     Ebben a repoban található meg minden webprog feladat!
 
-    Ebben
+    A főmappában lévő index.html ajánlom liveServerrel elinditani 
