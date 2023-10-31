@@ -4,13 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+    <script src="main.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-screen bg-slate-700">
-    <nav>
-        <ul>
-            <li><a href="../index.html">back</a></li>
-        </ul>
+    <nav class="">
+        <div class="flex flex-row bg-slate-800 shadow-lg p-2">
+            <a href="../index.html" class="bg-slate-900 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Vissza
+            </a>
+        </div>
     </nav>
-    
+    <main class="overscroll-none">
+        <div class="h-[88%] overflow-y-auto">
+            <div class="grid grid-cols-1 grid-rows-3 p-4">
+                <div class="bg-slate-800 shadow-xl transition border-2 border-slate-800 box-content rounded-lg p-4 mb-5">
+                    <span class="flex flex-row items-center mb-2">
+                        <h1 class="font-bold text-xl text-gray-100">Mindent Számoló</h1>
+                    </span>
+                    <div class="p-4">
+                        <p class="text-white">A lista: <span id="disp1"></span></p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-white"><span id="disp2"></span></p>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </main>
+    <footer>
+
+    </footer>
 </body>
 </html>
