@@ -7,7 +7,7 @@ let colors = ['red', 'green', 'blue'];
 button.addEventListener('click', () => {
     for (let i = 0; i < all_b.length; i++) {
         all_b[i].style.fontWeight = 'normal';
-        all_b[i].style.color = colors[Math.floor(Math.random() * 3)];
+        all_b[i].classList.add(`text-${colors[Math.floor(Math.random() * 3)]}-500`) ;
     }
 
     for (let i = 0; i < p.length; i++) {
