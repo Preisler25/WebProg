@@ -66,10 +66,18 @@
                 </div>
                 <div class="bg-slate-800 shadow-xl transition border-2 border-slate-800 box-content rounded-lg p-4 mb-5">
                     <span class="flex flex-row items-center mb-2">
-                        <h1 class="font-bold text-xl text-gray-100">{props.title}</h1>
+                        <h1 class="font-bold text-xl text-gray-100">Trigonometria</h1>
                     </span>
-                    <div class="rounded-lg text-white bg-orange-500 mt-9">
-                        <h1 class="text-xl text-center p-4 ">Nyomj meg!</h1>
+                    
+                    <div class="p-2 flex justify-center">
+                        <label for="input_num" class="flex justify-center flex-col text-sm font-medium text-gray-900 dark:text-white">num: </label>
+                        <input type="text" id="input_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="num">
+                    </div>
+                    <div class="p-4">
+                        <p class="text-white">Nyomja meg az enter billentyüt (feladat nem kért gombot :D)</p>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-white"><span id="disp3"></span></p>
                     </div>
                 </div>
             </div> 

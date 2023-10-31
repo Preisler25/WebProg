@@ -27,16 +27,32 @@ let display2 = document.querySelector('#disp2');
 
 let Masodfoku = (a, b, c) => {
     let d = b * b - 4 * a * c;
-    let x1 = (-b + Math.sqrt(d)) / (2 * a);
-    let x2 = (-b - Math.sqrt(d)) / (2 * a);
-    display2.innerHTML = `x1 = ${x1} <br> x2 = ${x2}`;
+
+    if (d > 0) {
+        let x1 = (-b + Math.sqrt(d)) / (2 * a);
+        let x2 = (-b - Math.sqrt(d)) / (2 * a);
+        display2.innerHTML = `x1 = ${x1} <br> x2 = ${x2}`;
+    } else if (d === 0) {
+        let x1 = -b / (2 * a);
+        display2.innerHTML = `x1 = ${x1} (kétszeres gyök)`;
+    } else {
+        let realPart = -b / (2 * a);
+        let imaginaryPart = Math.sqrt(-d) / (2 * a);
+        let imaginaryPartStr = '';
+        if (imaginaryPart === 1) {
+            imaginaryPartStr = 'i';
+        } else {
+            imaginaryPartStr = `${imaginaryPart.toFixed(2)}i`;
+        }
+        display2.innerHTML = `x1 = ${realPart.toFixed(2)} + ${imaginaryPartStr} <br> x2 = ${realPart.toFixed(2)} - ${imaginaryPartStr}`;
+    }
+    
 }
 
-addEventListener('keydown', (event) => {
-    if (event.key == 'Enter') {
+
+addEventListener('keyup', (event) => {
         let a = parseInt(inputa.value);
         let b = parseInt(inputb.value);
         let c = parseInt(inputc.value);
         Masodfoku(a, b, c);
-    }
 });
