@@ -5,18 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transzformáció</title>
+    <script src="main.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="h-screen bg-slate-700">
-    <nav>
-        <ul>
-            <li><a href="../index.html">back</a></li>
-        </ul>
+    <nav class="">
+        <div class="flex flex-row bg-slate-800 shadow-lg p-2">
+            <a href="../index.html" class="bg-slate-900 hover:bg-orange-700 text-white font-bold py-5 px-4 rounded focus:outline-none focus:shadow-outline">
+                Vissza
+            </a>
+            <div class="w-[88%] flex justify-center">
+                <button id="transformation" class="rounded-lg text-white bg-orange-500">
+                    <h1 class="text-xl text-center p-4" id="btn1">Transzformáció</h1>
+                </button>
+            </div>
+        </div>
     </nav>
     <main class="overscroll-none">
-        <h1>Transzformációs oldal</h1>
+        <div class="h-[88%] overflow-y-auto text-white">
+        <h1 class="text-2xl mb-3">Transzformációs oldal</h1>
         <section>
-            <h2>Első fejezet</h2>
+            <h2 class="text-xl mb-1">Első fejezet</h2>
             <p><b>Lórum ipse</b> természetesen szelejt kérdeződik a kezés számára. A talan tikózást, a talan
                 porzsomakás, hatatatlan
                 sításokkal, ami csendülőt dühög, az csak a kényszerű házás szemközt. Minek kell egyáltalán két fűzővel
@@ -41,7 +51,7 @@
                 1993-ban rozódt szetrényre.</p>
         </section>
         <section>
-            <h2>Második fejezet, amely az első után következik</h2>
+            <h2 class="text-xl mb-1">Második fejezet, amely az első után következik</h2>
             <p>Az ingozás a <b>szegén keresztül zálkodja</b> a köldességet, miközben a köldesség felgőjével gályos sítvélre
                 fűzést szuszozik a
                 kedmény kolás. A podást göcsömön szege felé pusztán a gazság ragyát, illetve az elenséget nyisszanja, a
@@ -59,7 +69,7 @@
                 a kolás <b>külön savája plórál</b>.</p>
         </section>
         <section>
-            <h2>Harmadik fejezet, mellyel történetünk <b>véget ér</b></h2>
+            <h2 class="text-xl mb-1">Harmadik fejezet, mellyel történetünk <b>véget ér</b></h2>
             <p>
                 Jézus briusában is fejtettek már erre a helyes pantra, ami sokakat acirál, bölykedik a szeréfli simpós
                 ínésből. (Azért
@@ -94,11 +104,12 @@
             </p>
         </section>
         <section>
-            <h2>Utószó</h2>
+            <h2 class="text-xl mb-1">Utószó</h2>
             <p>Köszönöm a figyelmet.</p>
         </section>
+    </div>
     </main>
-    <footer>
+    <footer class="text-orange-400">
         Generálta: <b><a href="http://www.lorumipse.hu/">Lórum ipse</a></b>
     </footer>
 </body>
