@@ -4,6 +4,7 @@ let p = document.querySelectorAll('p');
 let section = document.querySelectorAll('section');
 let colors = ['red', 'green', 'blue'];
 
+
 button.addEventListener('click', () => {
     for (let i = 0; i < all_b.length; i++) {
         all_b[i].style.fontWeight = 'normal';
