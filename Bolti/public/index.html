@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolti kassza</title>
+    <script src="cart.js" defer></script>
+    <script src="termek.js" defer></script>
+    <script src="main.js" defer></script>
+
+    <link rel="stylesheet" href="app.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header>
+        <div>Bolti kassza</div>
+    </header>
+    <main>
+        <div id="kosar">
+
+        </div>
+        <div id="termék kereső">
+            <input type="text" id="kereső" placeholder="Keresés...">
+            <div id="termékek_cont">
+                <div class="termék">
+                    <div class="termék név">Termék név</div>
+                    <div class="termék ár">Termék ár</div>
+                    <div class="termék mennyiség">Termék mennyiség</div>
+                </div>
+            </div>
+        </div>
+        <div id="szamoló">
+            <div id="szamoló_cont">
+                <div id="szamoló_eredmény">
+                    <div id="szamoló_eredmény_összeg">Összeg: 0</div>
+                    <div id="szamoló_eredmény_áfa">Áfa: 0</div>
+                    <div id="szamoló_eredmény_végösszeg">Végösszeg: 0</div>
+                </div>
+                <div id="szamoló_gombok">
+                    <button id="szamoló_gombok_törlés">Törlés</button>
+                    <button id="szamoló_gombok_fizetés">Fizetés</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        © Preisler András 11/E 2023
+    </footer>
+</body>
+</html>
