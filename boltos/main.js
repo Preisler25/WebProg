@@ -6,52 +6,34 @@ class Termek{
     }
 
     builderKosar = (kosar, display) => {
-        const card = document.createElement('div');
-        const card_name = document.createElement('div');
-        const card_price = document.createElement('div');
-        const del_btn = document.createElement('button');
-
-        del_btn.addEventListener('click', () => {
-            kosar.popProduct(this);
-        });
-
-        del_btn.textContent = 'Törlés';
-        card_name.textContent = this.nev;
-        card_price.textContent = this.ar + ' Ft';
-        card.appendChild(card_name);
-        card.appendChild(card_price);
-        card.appendChild(del_btn);
-
+        const card = newCard(['bg-slate-800', 'flex', 'flex-row', 'rounded', 'm-1', 'justify-end']);
+        newDiv(this.nev, ['text-white', 'p-1', 'm-2'], card);
+        newDiv(this.ar + ' Ft', ['text-white', 'p-1', 'm-2'], card);
+        newBtn('Törlés', ['bg-orange-700', 'p-2', 'm-1', 'rounded'], () => {kosar.popProduct(this);}, card);
         display.appendChild(card);
     };
 
-    builder = (kosar, display) => {
-        const card = document.createElement('div');
-        const card_name = document.createElement('div');
-        const card_price = document.createElement('div');
-        const img = document.createElement('img');
-        const btn = document.createElement('button');
+    builder = (kosar, display, search_filter) => {
 
-        btn.addEventListener('click', () => {
-            kosar.addProduct(this);
-        });
-        btn.textContent = 'Kosárba';
+        if (search_filter != undefined) {
+            if (this.nev.toLowerCase().indexOf(search_filter.toLowerCase()) == -1) {
+                return;
+            }
+        }
 
-        card_name.textContent = this.nev;
-        card_price.textContent = this.ar + ' Ft';
-        img.src = 'images/' + this.kep;
-        img.alt = this.nev;
-        card.appendChild(card_name);
-        card.appendChild(card_price);
-        card.appendChild(img);
-        card.appendChild(btn);
-    
+        const card = newCard(['bg-slate-800', 'flex', 'flex-col', 'p-3', 'rounded']);
+        newDiv(this.nev, ['text-white', 'p-1', 'm-0'], card);
+        newDiv(this.ar + ' Ft', ['text-white', 'p-1', 'm-0'], card);
+        newImg('images/' + this.kep, this.nev, ['w-20', 'rounded', 'm-auto'], card);
+        newBtn('Kosárba', ['bg-orange-700', 'p-2', 'm-1', 'rounded'], () => {kosar.addProduct(this);}, card);
+
         display.appendChild(card);
     };
 }
 class TermekLista{
     constructor(display){
         this.display = display;
+        this.search_filter = '';
         this.termekLista = [];
     }
 
@@ -59,9 +41,15 @@ class TermekLista{
         this.termekLista.push(termek);
     }
 
+    changeSearchFilter(search_filter){
+        this.search_filter = search_filter;
+        this.builder(kosar);
+    }
+
     builder(kosar){
+        this.display.innerHTML = '';
         for(let i = 0; i < this.termekLista.length; i++){
-            this.termekLista[i].builder(kosar, this.display);
+            this.termekLista[i].builder(kosar, this.display, this.search_filter);
         }
     }
 }
@@ -111,9 +99,77 @@ class Cart {
     };
 }
 
+const loadData = (termekLista, kosar) => {
+    const data = fetch('./data.json').then((response) => {
+        return response.json();
+    }
+    ).then((data) => {
+        for (let i = 0; i < data.termekek.length; i++) {
+            const termek = new Termek(data.termekek[i].nev, data.termekek[i].ar, data.termekek[i].kep);
+            termekLista.addTermek(termek);
+        }
+        termekLista.builder(kosar);
+    });
+};
+
+const newImg = (src, alt, styles, card) => {
+    const img = document.createElement('img');
+
+    img.src = src;
+    img.alt = alt;
+
+    for (let i = 0; i < styles.length; i++) {
+        img.classList.add(styles[i]);
+    }
+
+    card.appendChild(img);
+}
+
+const newDiv = (text, styles, card) => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    
+    for (let i = 0; i < styles.length; i++) {
+        div.classList.add(styles[i]);
+    }
+
+    card.appendChild(div);
+}
+
+const newBtn = (text, styles, event, card) => {
+    const btn = document.createElement('button');
+    btn.textContent = text;
+    
+    for (let i = 0; i < styles.length; i++) {
+        btn.classList.add(styles[i]);
+    }
+
+    btn.addEventListener('click', event);
+    card.appendChild(btn);
+}
+
+const newCard = (styles) => {
+    const card = document.createElement('div');
+    for (let i = 0; i < styles.length; i++) {
+        card.classList.add(styles[i]);
+    }
+    return card;
+}
+
+const error = ( text ) => {
+    const error_display = document.querySelector('#error');
+    error_display.textContent = text;
+}
+
 const display = document.querySelector('#kosar');
 const display_termek = document.querySelector('#termékek_cont');
 const ar_display = document.querySelector('#ar');
+
+const add_btn = document.querySelector('#manu_add');
+const manu_name = document.querySelector('#manu_nev');
+const manu_price = document.querySelector('#manu_ar');
+
+const search = document.querySelector('#kereso');
 
 const pay_btn = document.querySelector('#pay');
 const del_btn = document.querySelector('#del');
@@ -121,6 +177,26 @@ const del_btn = document.querySelector('#del');
 
 const kosar = new Cart(display, ar_display);
 const termekLista = new TermekLista(display_termek);
+
+
+add_btn.addEventListener('click', () => {
+    if (manu_name.value == '' || manu_price.value == '') {
+        error('Nem adtál meg minden adatot!');
+        return;
+    }
+    if (isNaN(parseInt(manu_price.value))) {
+        error('Az ár nem szám!');
+        manu_price.value = '';
+        return;
+    }
+
+    const termek = new Termek(manu_name.value, parseInt(manu_price.value), 'def.jpg');
+    termekLista.addTermek(termek);
+    termekLista.builder(kosar);
+    manu_name.value = '';
+    manu_price.value = '';
+    error('');
+});
 
 pay_btn.addEventListener('click', () => {
     kosar.pay();
@@ -130,14 +206,9 @@ del_btn.addEventListener('click', () => {
     kosar.del_all();
 });
 
-const termek1 = new Termek('Termék 1', 1000, '1.jpg');
-const termek2 = new Termek('Termék 2', 2000, '2.jpg');
-const termek3 = new Termek('Termék 3', 3000, '3.jpg');
+search.addEventListener('keyup', () => {
+    termekLista.changeSearchFilter(search.value);
+});
 
 
-
-termekLista.addTermek(termek1);
-termekLista.addTermek(termek2);
-termekLista.addTermek(termek3);
-
-termekLista.builder(kosar);
+loadData(termekLista, kosar);
