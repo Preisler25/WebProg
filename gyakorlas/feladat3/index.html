@@ -7,11 +7,11 @@
     <script src="main.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div>
-        <input type="text" placeholder="Todo" id="new_todo_element">
+<body class="h-screen bg-slate-700 w-screen flex justify-spa items-center flex-rows">
+    <div class="flex justify-center items-center w-1/2">
+        <input type="text" placeholder="new Todo" id="new_todo_element">
         <button id="add_todo">Hozzáad</button>
     </div>
-    <div id="todo_list"></div>
+    <div id="todo_list" class="w-1/2"></div>
 </body>
 </html>
